@@ -52,6 +52,7 @@ class _StartPageState extends State<StartPage> {
             ),
             Container(
               color: kAccentTwo,
+              width: double.infinity,
               child: MaterialButton(
                 child: Text(
                   "Calculate",
