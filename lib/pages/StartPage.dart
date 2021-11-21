@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,7 +59,10 @@ class _StartPageState extends State<StartPage> {
                   "Calculate",
                   style: kMainButtonStyle,
                 ),
-                onPressed: () => {print("Button pressed")},
+                onPressed: () => {
+                 playLocalAsset()
+
+                },
               ),
             ),
           ],
@@ -66,4 +70,12 @@ class _StartPageState extends State<StartPage> {
       ),
     ));
   }
+
+
+  Future<AudioPlayer> playLocalAsset() async {
+    AudioCache cache = new AudioCache();
+
+    return await cache.play("s1.mp3");
+  }
+
 }
