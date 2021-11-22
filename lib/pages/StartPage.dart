@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,8 +12,6 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   final numberInputController = TextEditingController();
 
-
-
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -23,36 +20,28 @@ class _StartPageState extends State<StartPage> {
   }
 
   @override
-  void initState(){
-
+  void initState() {
     super.initState();
   }
 
-  void _playMoneySound() async{
-
+  int calculateDuration() {
     //Get Duration from controller: default 1 second
     int dollarPerSecond = 3600;
-    int numberInput =3600;
+    int numberInput = 3600;
 
     if (numberInputController.text.isNotEmpty)
-      numberInput=int.parse(numberInputController.text);
+      numberInput = int.parse(numberInputController.text);
 
     //calculate running time
-    int playDuration = (numberInput/dollarPerSecond).round()*1000;
+    double dur = (numberInput / dollarPerSecond) * 1000;
+    int playDuration = dur.round();
 
-    print('Runnining for '+ playDuration.toString()+' seconds');
-
-    // Start Audio file and stop after duration
-    AudioCache cache= new AudioCache();
-    AudioPlayer player = await cache.play('s1.mp3'); // assign player here
-    await Future.delayed(Duration(milliseconds: playDuration));
-    player?.stop();
-
+    return playDuration;
   }
-
 
   @override
   Widget build(BuildContext context) {
+    int duration;
     return new Scaffold(
         body: Container(
       color: kBackgroundColorLight,
@@ -101,8 +90,8 @@ class _StartPageState extends State<StartPage> {
                   style: kMainButtonStyle,
                 ),
                 onPressed: () => {
-
-                  _playMoneySound()
+                  duration = calculateDuration(),
+                  Navigator.pushNamed(context, '/Display', arguments: duration)
                 },
               ),
             ),
@@ -111,9 +100,4 @@ class _StartPageState extends State<StartPage> {
       ),
     ));
   }
-
-
-
-
-
 }
