@@ -24,19 +24,16 @@ class _DisplayPageState extends State<DisplayPage> {
     player?.stop();
   }
 
-
   @override
   Widget build(BuildContext context) {
     int duration = ModalRoute.of(context).settings.arguments;
     print('Duration is ' + duration.toString());
     _playMoneySound(duration);
-    double durationInSeconds = duration/1000;
+    double durationInSeconds = duration / 1000;
 
-    String timeToDisplay =durationInSeconds.toStringAsFixed(2)+ "s";
+    String timeToDisplay = durationInSeconds.toStringAsFixed(2) + "s";
 
-    int amount = (duration*3.6).round();
-
-
+    int amount = (duration * 3.6).round();
 
     return Scaffold(
       body: Container(
@@ -48,13 +45,19 @@ class _DisplayPageState extends State<DisplayPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Text("It Takes Jeff ", style: kMainTextStyle,),
+                Text(
+                  "It Takes Jeff ",
+                  style: kMainTextStyle,
+                ),
                 Text(
                   timeToDisplay,
                   textAlign: TextAlign.center,
                   style: kHeadingTextStyle,
                 ),
-                Text("to earn "+ amount.toString()+" dollars.", style: kMainTextStyle,),
+                Text(
+                  "to earn " + amount.toString() + " dollars.",
+                  style: kMainTextStyle,
+                ),
                 Container(
                   width: double.infinity,
                   child: MaterialButton(

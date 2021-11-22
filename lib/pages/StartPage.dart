@@ -21,7 +21,6 @@ class _StartPageState extends State<StartPage> {
 
   @override
   void initState() {
-
     super.initState();
   }
 
@@ -78,7 +77,6 @@ class _StartPageState extends State<StartPage> {
                   FilteringTextInputFormatter.digitsOnly
                 ], // Only numbers can be entered
               ),
-
             ),
             SizedBox(
               height: 24,
@@ -87,7 +85,6 @@ class _StartPageState extends State<StartPage> {
               valueListenable: numberInputController,
               builder: (context, value, child) {
                 return Container(
-
                   width: double.infinity,
                   child: MaterialButton(
                     color: kAccentTwo,
@@ -97,23 +94,19 @@ class _StartPageState extends State<StartPage> {
                       style: kMainButtonStyle,
                     ),
                     onPressed: () => {
-                      if(value.text.isNotEmpty ){
-                        duration = calculateDuration(),
-                        Navigator.pushNamed(context, '/Display', arguments: duration)
-                      }else{
-                        null
-                      }
-
-
+                      if (value.text.isNotEmpty)
+                        {
+                          duration = calculateDuration(),
+                          Navigator.pushNamed(context, '/Display',
+                              arguments: duration)
+                        }
+                      else
+                        {null}
                     },
-
                   ),
                 );
               },
             ),
-
-
-
           ],
         ),
       ),
