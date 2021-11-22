@@ -11,6 +11,15 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
+  final numberInputController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    numberInputController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -36,6 +45,7 @@ class _StartPageState extends State<StartPage> {
             Container(
               color: kBackgroundColorDark,
               child: new TextField(
+                controller: numberInputController,
                 decoration: new InputDecoration(
                   hintStyle: TextStyle(fontSize: 17, color: kTextColorDark),
                   hintText: 'Enter an amount',
@@ -59,10 +69,7 @@ class _StartPageState extends State<StartPage> {
                   "Calculate",
                   style: kMainButtonStyle,
                 ),
-                onPressed: () => {
-                 playLocalAsset()
-
-                },
+                onPressed: () => {playLocalAsset()},
               ),
             ),
           ],
@@ -71,11 +78,9 @@ class _StartPageState extends State<StartPage> {
     ));
   }
 
-
   Future<AudioPlayer> playLocalAsset() async {
     AudioCache cache = new AudioCache();
 
     return await cache.play("s1.mp3");
   }
-
 }
