@@ -1,41 +1,41 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../constants.dart';
 
 class DisplayPage extends StatefulWidget {
-
-
   DisplayPage({Key key}) : super(key: key);
-
 
   @override
   _DisplayPageState createState() => _DisplayPageState();
 }
 
 class _DisplayPageState extends State<DisplayPage> {
-
-
-  void _playMoneySound(int duration) async{
-    print('Runnining for '+ duration.toString()+' milliseconds');
+  void _playMoneySound(int duration) async {
+    print('Runnining for ' + duration.toString() + ' milliseconds');
 
     // Start Audio file and stop after duration
-    AudioCache cache= new AudioCache();
+    AudioCache cache = new AudioCache();
     AudioPlayer player = await cache.play('s1.mp3'); // assign player here
     await Future.delayed(Duration(milliseconds: duration));
     player?.stop();
-
   }
-
 
 
   @override
   Widget build(BuildContext context) {
     int duration = ModalRoute.of(context).settings.arguments;
-    print('Duration is '+ duration.toString());
+    print('Duration is ' + duration.toString());
     _playMoneySound(duration);
+    double durationInSeconds = duration/1000;
+
+    String timeToDisplay =durationInSeconds.toStringAsFixed(2)+ "s";
+
+    int amount = (duration*3.6).round();
+
 
 
     return Scaffold(
@@ -48,13 +48,17 @@ class _DisplayPageState extends State<DisplayPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
+                Text("It Takes Jeff ", style: kMainTextStyle,),
                 Text(
-                    "Enter your net worth and hear how long it takes for Jeff to earn the same amount",
-                    style: kMainTextStyle),
+                  timeToDisplay,
+                  textAlign: TextAlign.center,
+                  style: kHeadingTextStyle,
+                ),
+                Text("to earn "+ amount.toString()+" dollars.", style: kMainTextStyle,),
                 Container(
-                  color: kAccentTwo,
                   width: double.infinity,
                   child: MaterialButton(
+                    color: kAccentTwo,
                     child: Text(
                       "Back",
                       style: kMainButtonStyle,

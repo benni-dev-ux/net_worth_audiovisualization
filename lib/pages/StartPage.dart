@@ -21,6 +21,7 @@ class _StartPageState extends State<StartPage> {
 
   @override
   void initState() {
+
     super.initState();
   }
 
@@ -77,24 +78,42 @@ class _StartPageState extends State<StartPage> {
                   FilteringTextInputFormatter.digitsOnly
                 ], // Only numbers can be entered
               ),
+
             ),
             SizedBox(
               height: 24,
             ),
-            Container(
-              color: kAccentTwo,
-              width: double.infinity,
-              child: MaterialButton(
-                child: Text(
-                  "Calculate",
-                  style: kMainButtonStyle,
-                ),
-                onPressed: () => {
-                  duration = calculateDuration(),
-                  Navigator.pushNamed(context, '/Display', arguments: duration)
-                },
-              ),
+            ValueListenableBuilder<TextEditingValue>(
+              valueListenable: numberInputController,
+              builder: (context, value, child) {
+                return Container(
+
+                  width: double.infinity,
+                  child: MaterialButton(
+                    color: kAccentTwo,
+                    disabledColor: Colors.white,
+                    child: Text(
+                      "Calculate",
+                      style: kMainButtonStyle,
+                    ),
+                    onPressed: () => {
+                      if(value.text.isNotEmpty ){
+                        duration = calculateDuration(),
+                        Navigator.pushNamed(context, '/Display', arguments: duration)
+                      }else{
+                        null
+                      }
+
+
+                    },
+
+                  ),
+                );
+              },
             ),
+
+
+
           ],
         ),
       ),
