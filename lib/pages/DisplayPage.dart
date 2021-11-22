@@ -32,18 +32,14 @@ class _DisplayPageState extends State<DisplayPage> {
     double durationInSeconds = duration / 1000;
 
     String timeToDisplay = durationInSeconds.toStringAsFixed(2) + "s";
-    if(durationInSeconds>60){
-      int min = (durationInSeconds/60).floor();
-      int seconds =(durationInSeconds- (min*60)).round();
-      timeToDisplay = min.toString()+" m "+ seconds.toString()+" s";
-
+    if (durationInSeconds > 60) {
+      int min = (durationInSeconds / 60).floor();
+      int seconds = (durationInSeconds - (min * 60)).round();
+      timeToDisplay = min.toString() + " m " + seconds.toString() + " s";
     }
 
     int amount = (duration * 3.6).round();
-
-
-
-
+    double turns = duration/1000;
 
     return Scaffold(
       body: Container(
@@ -55,6 +51,10 @@ class _DisplayPageState extends State<DisplayPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
+                AnimatedRotation(
+                    turns: (turns),
+                    duration: new Duration(milliseconds: duration),
+                    child: AnimatedRotationWidget()),
                 Text(
                   "It Takes Jeff ",
                   style: kMainTextStyle,
@@ -85,5 +85,16 @@ class _DisplayPageState extends State<DisplayPage> {
         ),
       ),
     );
+  }
+}
+
+class AnimatedRotationWidget extends StatelessWidget {
+  const AnimatedRotationWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset("assets/dollar.png");
   }
 }
