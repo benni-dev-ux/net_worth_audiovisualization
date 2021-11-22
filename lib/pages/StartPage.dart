@@ -13,12 +13,43 @@ class StartPage extends StatefulWidget {
 class _StartPageState extends State<StartPage> {
   final numberInputController = TextEditingController();
 
+
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     numberInputController.dispose();
     super.dispose();
   }
+
+  @override
+  void initState(){
+
+    super.initState();
+  }
+
+  void _playMoneySound() async{
+
+    //Get Duration from controller: default 1 second
+    int dollarPerSecond = 3600;
+    int numberInput =3600;
+
+    if (numberInputController.text.isNotEmpty)
+      numberInput=int.parse(numberInputController.text);
+
+    //calculate running time
+    int playDuration = (numberInput/dollarPerSecond).round()*1000;
+
+    print('Runnining for '+ playDuration.toString()+' seconds');
+
+    // Start Audio file and stop after duration
+    AudioCache cache= new AudioCache();
+    AudioPlayer player = await cache.play('s1.mp3'); // assign player here
+    await Future.delayed(Duration(milliseconds: playDuration));
+    player?.stop();
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +100,10 @@ class _StartPageState extends State<StartPage> {
                   "Calculate",
                   style: kMainButtonStyle,
                 ),
-                onPressed: () => {playLocalAsset()},
+                onPressed: () => {
+
+                  _playMoneySound()
+                },
               ),
             ),
           ],
@@ -78,9 +112,8 @@ class _StartPageState extends State<StartPage> {
     ));
   }
 
-  Future<AudioPlayer> playLocalAsset() async {
-    AudioCache cache = new AudioCache();
 
-    return await cache.play("s1.mp3");
-  }
+
+
+
 }
