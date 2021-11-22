@@ -32,8 +32,18 @@ class _DisplayPageState extends State<DisplayPage> {
     double durationInSeconds = duration / 1000;
 
     String timeToDisplay = durationInSeconds.toStringAsFixed(2) + "s";
+    if(durationInSeconds>60){
+      int min = (durationInSeconds/60).floor();
+      int seconds =(durationInSeconds- (min*60)).round();
+      timeToDisplay = min.toString()+" m "+ seconds.toString()+" s";
+
+    }
 
     int amount = (duration * 3.6).round();
+
+
+
+
 
     return Scaffold(
       body: Container(
