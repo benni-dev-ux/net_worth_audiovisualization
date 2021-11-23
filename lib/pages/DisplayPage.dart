@@ -55,7 +55,7 @@ class _DisplayPageState extends State<DisplayPage>
     _playMoneySound(duration);
     double durationInSeconds = duration / 1000;
 
-    String timeToDisplay = durationInSeconds.toStringAsFixed(2) + "seconds";
+    String timeToDisplay = durationInSeconds.toStringAsFixed(2) + " seconds";
     if (durationInSeconds > 60) {
       int min = (durationInSeconds / 60).floor();
       int seconds = (durationInSeconds - (min * 60)).round();
