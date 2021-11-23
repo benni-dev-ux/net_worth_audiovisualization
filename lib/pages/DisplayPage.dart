@@ -87,7 +87,7 @@ class _DisplayPageState extends State<DisplayPage>
                   height: 12.0,
                 ),
                 Text(
-                  "It Takes Jeff ",
+                  "It takes Jeff ",
                   style: kMainTextStyle,
                 ),
                 Text(
@@ -96,7 +96,7 @@ class _DisplayPageState extends State<DisplayPage>
                   style: kTimeDisplayTextStyle,
                 ),
                 Text(
-                  "to earn " + amount.toString() + " dollars.",
+                  "to earn \$" + amount.toString(),
                   style: kMainTextStyle,
                 ),
                 SizedBox(

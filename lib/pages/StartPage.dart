@@ -70,7 +70,7 @@ class _StartPageState extends State<StartPage> {
 
                   hintStyle: TextStyle(fontSize: 17, color: kTextColorlightContrast),
                   hintText: 'Enter an amount',
-                  suffixIcon: Icon(Icons.money_sharp),
+                  suffixIcon: Icon(Icons.attach_money_sharp),
                   contentPadding: EdgeInsets.all(20),
                 ),
                 keyboardType: TextInputType.number,
