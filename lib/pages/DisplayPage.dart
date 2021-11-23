@@ -66,7 +66,7 @@ class _DisplayPageState extends State<DisplayPage>
 
     return Scaffold(
       body: Container(
-        color: kBackgroundColorLight,
+        color: kBackgroundColorDark,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 80.0),
           child: Container(

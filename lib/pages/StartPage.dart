@@ -44,7 +44,7 @@ class _StartPageState extends State<StartPage> {
     int duration;
     return new Scaffold(
         body: Container(
-      color: kBackgroundColorLight,
+      color: kBackgroundColorDark,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 80.0),
         child: Column(
@@ -57,17 +57,18 @@ class _StartPageState extends State<StartPage> {
               height: 12.0,
             ),
             Text(
-                "Enter your net worth and hear how long it takes for Jeff to earn the same amount",
+                "With an estimated net worth of \$211.4 billion Amazon founder Jeff Bezos is currently the second richest person on earth. Calculate how long he needs to gain your net worth.",
                 style: kMainTextStyle),
             SizedBox(
               height: 22.0,
             ),
             Container(
-              color: kBackgroundColorDark,
+              color: kBackgroundColorDarkContrast,
               child: new TextField(
                 controller: numberInputController,
                 decoration: new InputDecoration(
-                  hintStyle: TextStyle(fontSize: 17, color: kTextColorDark),
+
+                  hintStyle: TextStyle(fontSize: 17, color: kTextColorlightContrast),
                   hintText: 'Enter an amount',
                   suffixIcon: Icon(Icons.money_sharp),
                   contentPadding: EdgeInsets.all(20),
