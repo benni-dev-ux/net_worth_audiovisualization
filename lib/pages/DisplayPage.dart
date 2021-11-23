@@ -13,15 +13,18 @@ class DisplayPage extends StatefulWidget {
   _DisplayPageState createState() => _DisplayPageState();
 }
 
-class _DisplayPageState extends State<DisplayPage> {
+class _DisplayPageState extends State<DisplayPage>
+    with SingleTickerProviderStateMixin {
+  AnimationController RotationController;
   AudioCache cache;
 
   void _playMoneySound(int duration) async {
     print('Runnining for ' + duration.toString() + ' milliseconds');
-
+    RotationController.forward();
     // Start Audio file and stop after duration
 
-    AudioPlayer player = await cache.loop('coinsound.mp3'); // assign player here
+    AudioPlayer player =
+    await cache.loop('coinsound.mp3'); // assign player here
     await Future.delayed(Duration(milliseconds: duration));
     player?.stop();
   }
@@ -33,8 +36,20 @@ class _DisplayPageState extends State<DisplayPage> {
   }
 
   @override
+  void dispose() {
+    RotationController.dispose()
+    super.dispose()
+  }
+
+  @override
   Widget build(BuildContext context) {
-    int duration = ModalRoute.of(context).settings.arguments;
+    int duration = ModalRoute
+        .of(context)
+        .settings
+        .arguments;
+    RotationController =
+        AnimationController(
+            vsync: this, duration: Duration(milliseconds: duration));
     print('Duration is ' + duration.toString());
     _playMoneySound(duration);
     double durationInSeconds = duration / 1000;
@@ -48,7 +63,6 @@ class _DisplayPageState extends State<DisplayPage> {
     }
 
     int amount = (duration * 3.6).floor();
-    double turns = duration / 1000;
 
     return Scaffold(
       body: Container(
@@ -60,10 +74,11 @@ class _DisplayPageState extends State<DisplayPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                AnimatedRotation(
-                    turns: (5),
-                    duration: new Duration(milliseconds: duration),
-                    child: Image.asset("assets/dollar.png")),
+                RotationTransition(
+                  turns: Tween(begin: 0.0, end: 1.0).animate(
+                      RotationController),
+                  child: Image.asset("assets/dollar.png"),
+                ),
                 Text(
                   "It Takes Jeff ",
                   style: kMainTextStyle,
@@ -94,16 +109,5 @@ class _DisplayPageState extends State<DisplayPage> {
         ),
       ),
     );
-  }
-}
-
-class AnimatedRotationWidget extends StatelessWidget {
-  const AnimatedRotationWidget({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset("assets/dollar.png");
   }
 }
