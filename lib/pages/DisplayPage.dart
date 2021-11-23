@@ -17,13 +17,14 @@ class _DisplayPageState extends State<DisplayPage>
     with SingleTickerProviderStateMixin {
   AnimationController RotationController;
   AudioCache cache;
+  AudioPlayer player;
 
   void _playMoneySound(int duration) async {
     print('Runnining for ' + duration.toString() + ' milliseconds');
     RotationController.forward();
     // Start Audio file and stop after duration
 
-    AudioPlayer player =
+     player =
     await cache.loop('coinsound.mp3'); // assign player here
     await Future.delayed(Duration(milliseconds: duration));
     player?.stop();
@@ -109,7 +110,9 @@ class _DisplayPageState extends State<DisplayPage>
                       "Back",
                       style: kMainButtonStyle,
                     ),
-                    onPressed: () => {Navigator.pop(context)},
+                    onPressed: () => {
+                      player.stop(),
+                      Navigator.pop(context)},
                   ),
                 ),
               ],
