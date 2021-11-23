@@ -14,14 +14,22 @@ class DisplayPage extends StatefulWidget {
 }
 
 class _DisplayPageState extends State<DisplayPage> {
+  AudioCache cache;
+
   void _playMoneySound(int duration) async {
     print('Runnining for ' + duration.toString() + ' milliseconds');
 
     // Start Audio file and stop after duration
-    AudioCache cache = new AudioCache();
-    AudioPlayer player = await cache.play('s6.mp3'); // assign player here
+
+    AudioPlayer player = await cache.loop('coinsound.mp3'); // assign player here
     await Future.delayed(Duration(milliseconds: duration));
     player?.stop();
+  }
+
+  @override
+  void initState() {
+    cache = new AudioCache();
+    super.initState();
   }
 
   @override
@@ -31,15 +39,16 @@ class _DisplayPageState extends State<DisplayPage> {
     _playMoneySound(duration);
     double durationInSeconds = duration / 1000;
 
-    String timeToDisplay = durationInSeconds.toStringAsFixed(2) + "s";
+    String timeToDisplay = durationInSeconds.toStringAsFixed(2) + "seconds";
     if (durationInSeconds > 60) {
       int min = (durationInSeconds / 60).floor();
       int seconds = (durationInSeconds - (min * 60)).round();
-      timeToDisplay = min.toString() + " m " + seconds.toString() + " s";
+      timeToDisplay =
+          min.toString() + " minutes " + seconds.toString() + " seconds";
     }
 
     int amount = (duration * 3.6).floor();
-    double turns = duration/1000;
+    double turns = duration / 1000;
 
     return Scaffold(
       body: Container(
@@ -54,7 +63,7 @@ class _DisplayPageState extends State<DisplayPage> {
                 AnimatedRotation(
                     turns: (5),
                     duration: new Duration(milliseconds: duration),
-                    child: AnimatedRotationWidget()),
+                    child: Image.asset("assets/dollar.png")),
                 Text(
                   "It Takes Jeff ",
                   style: kMainTextStyle,
@@ -62,7 +71,7 @@ class _DisplayPageState extends State<DisplayPage> {
                 Text(
                   timeToDisplay,
                   textAlign: TextAlign.center,
-                  style: kHeadingTextStyle,
+                  style: kTimeDisplayTextStyle,
                 ),
                 Text(
                   "to earn " + amount.toString() + " dollars.",

@@ -14,6 +14,11 @@ const kHeadingTextStyle = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 30.0,
     color: kTextColorDark);
+const kTimeDisplayTextStyle = TextStyle(
+    fontFamily: 'roboto',
+    fontWeight: FontWeight.bold,
+    fontSize: 20.0,
+    color: kTextColorDark);
 
 const kMainTextStyle = TextStyle(
     fontFamily: 'roboto',
