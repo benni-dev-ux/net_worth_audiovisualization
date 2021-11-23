@@ -19,7 +19,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
     // Start Audio file and stop after duration
     AudioCache cache = new AudioCache();
-    AudioPlayer player = await cache.play('s1.mp3'); // assign player here
+    AudioPlayer player = await cache.play('s6.mp3'); // assign player here
     await Future.delayed(Duration(milliseconds: duration));
     player?.stop();
   }
@@ -38,7 +38,7 @@ class _DisplayPageState extends State<DisplayPage> {
       timeToDisplay = min.toString() + " m " + seconds.toString() + " s";
     }
 
-    int amount = (duration * 3.6).round();
+    int amount = (duration * 3.6).floor();
     double turns = duration/1000;
 
     return Scaffold(
@@ -52,7 +52,7 @@ class _DisplayPageState extends State<DisplayPage> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 AnimatedRotation(
-                    turns: (turns),
+                    turns: (5),
                     duration: new Duration(milliseconds: duration),
                     child: AnimatedRotationWidget()),
                 Text(
