@@ -25,5 +25,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/coinsound.mp3
-    - assets/dollar.png
+    - assets/

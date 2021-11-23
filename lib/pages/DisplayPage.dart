@@ -37,8 +37,8 @@ class _DisplayPageState extends State<DisplayPage>
 
   @override
   void dispose() {
-    RotationController.dispose()
-    super.dispose()
+    RotationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -74,10 +74,16 @@ class _DisplayPageState extends State<DisplayPage>
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                RotationTransition(
-                  turns: Tween(begin: 0.0, end: 1.0).animate(
-                      RotationController),
-                  child: Image.asset("assets/dollar.png"),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(42.0, 16.0, 42.0, 16.0),
+                  child: RotationTransition(
+                    turns: Tween(begin: 0.0, end: 1.0).animate(
+                        RotationController),
+                    child: Image.asset("assets/dollar4.png"),
+                  ),
+                ),
+                SizedBox(
+                  height: 12.0,
                 ),
                 Text(
                   "It Takes Jeff ",
@@ -91,6 +97,9 @@ class _DisplayPageState extends State<DisplayPage>
                 Text(
                   "to earn " + amount.toString() + " dollars.",
                   style: kMainTextStyle,
+                ),
+                SizedBox(
+                  height: 22.0,
                 ),
                 Container(
                   width: double.infinity,
