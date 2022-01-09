@@ -46,7 +46,7 @@ class _StartPageState extends State<StartPage> {
         body: Container(
       color: kBackgroundColorDark,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 80.0),
+        padding: const EdgeInsets.fromLTRB(42.0, 64.0, 42.0, 80.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,

@@ -69,7 +69,7 @@ class _DisplayPageState extends State<DisplayPage>
       body: Container(
         color: kBackgroundColorDark,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(32.0, 64.0, 32.0, 80.0),
+          padding: const EdgeInsets.fromLTRB(42.0, 64.0, 42.0, 80.0),
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
